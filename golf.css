@@ -1,0 +1,43 @@
+h1 {
+    text-align: center;
+}
+#holeNumber {
+    text-align: center;
+    display:flex;
+    background-color: green;
+}
+.title {
+    position: relative;
+    top: 7px;
+    margin-top: -5px;
+    font-weight: bold;
+}
+#hole {
+    padding: 0px 10px;
+}
+
+#myCard{
+    display:flex;
+}
+
+#table {
+    padding: 20px;
+    
+}
+#table, td, th {
+    padding: 20px;
+    border: 1px solid black;
+}
+#table, th {
+    padding: 30px;
+}
+.Names  {
+    border: none;
+    padding: 10px;
+    margin: -10px 0px;
+    font-size: 15px;
+    text-align: center;
+}
+.initials {
+    text-align: center;
+}
