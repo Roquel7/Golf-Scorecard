@@ -7,10 +7,13 @@ h1 {
     text-align: center;
 }
 #firstRow {
-    text-align: center;
-    display:flex;
     background-color: green;
 }
+#firstRow :nth-child(12) {
+    background-color: white;
+    
+}
+
 .title {
     position: relative;
     top: 7px;
@@ -42,4 +45,8 @@ h1 {
     margin: -10px 0px;
     font-size: 15px;
     text-align: center;
+}
+.numberCells {
+    padding: 5px; 
+    font-size: 15px;
 }
