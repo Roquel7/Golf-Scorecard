@@ -27,6 +27,8 @@ function golfCard() {
 
     $("#myTable").append("<tr id='ninthRow'> <th> <input class='names firstName' type='text' placeholder='4th Name'> </th> </tr>")
     ninthRow();
+
+    tenthRow()
 }
 
 function secondRow() {
@@ -130,6 +132,21 @@ function ninthRow() {
     $("#ninthRow").append("<td></td> <td></td>")
 
 }
+
+function tenthRow() {
+
+    let tenth = document.createElement("tr")
+    let tenthHeader = document.createElement("th")
+    tenthHeader.innerText = "Par";
+    tenth.appendChild(tenthHeader);
+    tenth.id = "tenthRow";
+    $("#myTable").append(tenth)
+    
+    for (let i = 1; i <= 21; i++) {
+        $("#tenthRow").append("<td></td>")
+    }
+    $("#myTable").append(tenth);
+} 
 
 
 // function Rows() {

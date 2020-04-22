@@ -6,10 +6,10 @@ input[type=number]::-webkit-outer-spin-button {
 h1 {
     text-align: center;
 }
-#firstRow {
+#firstRow, #tenthRow {
     background-color: green;
 }
-#firstRow :nth-child(12) {
+#firstRow :nth-child(12), #tenthRow :nth-child(12) {
     background-color: white;
     
 }
