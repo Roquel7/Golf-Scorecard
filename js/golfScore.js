@@ -9,7 +9,9 @@ function golfCard() {
     }
     $("#firstRow").append("<td>IN</td> <td>TOTAL</td>")
 
-    $("#myTable").append("<tr id='secondRow'> <th></th> </tr>")
+
+    //This is the second row
+    $("#myTable").append("<tr id='secondRow'> <th id='firstCourse'></th> </tr>")
 
     secondRow();
     thirdRow();
@@ -44,6 +46,7 @@ function thirdRow() {
     let thirdHeader = document.createElement("th")
     third.appendChild(thirdHeader);
     third.id = "thirdRow";
+    thirdHeader.id="secondCourse";
     $("#myTable").append(third)
     
     for (let i = 1; i <= 21; i++) {
@@ -58,6 +61,7 @@ function fourRow() {
     let fourthHeader = document.createElement("th")
     fourth.appendChild(fourthHeader);
     fourth.id = "fourthRow";
+    fourthHeader.id="thirdCourse";
     $("#myTable").append(fourth)
     
     for (let i = 1; i <= 21; i++) {
@@ -142,8 +146,27 @@ function tenthRow() {
     tenth.id = "tenthRow";
     $("#myTable").append(tenth)
     
-    for (let i = 1; i <= 21; i++) {
+    for (let i = 1; i <= 22; i++) {
         $("#tenthRow").append("<td></td>")
     }
     $("#myTable").append(tenth);
 } 
+
+$.getJSON("https://golf-courses-api.herokuapp.com/courses", function(data) {
+
+    // example to get an API
+    // let courseOne = "https://golf-courses-api.herokuapp.com/courses/" + data.courses[0].id;
+    // console.log(courseOne);
+
+
+    let firstCourseName = data.courses[0].name;
+
+    let secondCourseName = data.courses[1].name;
+
+    let thirdourseName = data.courses[2].name;
+
+
+    document.getElementById('firstCourse').append(firstCourseName);
+    document.getElementById('secondCourse').append(secondCourseName);
+    document.getElementById('thirdCourse').append(thirdourseName);
+});
