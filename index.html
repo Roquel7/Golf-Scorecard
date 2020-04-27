@@ -1,29 +1,29 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <link rel="stylesheet" href="golf.css">
-    <title>Golf Score</title>
-</head>
-<body>
-<body onload="golfCard()">
-    
-    <h1>Golf Score</h1>
 
-    <div id = "myCard">
-        <div id = "holeNumber">
-            <table id="myTable">
-                
-            </table>
+    <head>
+        <meta charset="UTF-8">
+        
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <link rel="stylesheet" href="golf.css">
+        <title>Golf Score</title>
+    </head>
+
+    <body onload="createScorecard()">
+        
+        <h1>Golf Score</h1>
+
+        <div id = "myCard">
+
+            <div id = "holeNumber">
+                <table id="myTable"></table>
+            </div>
+
         </div>
-        <div id="scorecard"></div> 
-
-    </div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src='js/golfScore.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src='js/golfScore.js'></script>
 
-</body>
+    </body>
+
 </html>

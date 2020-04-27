@@ -1,4 +1,4 @@
-function golfCard() {
+function createScorecard() {
     document.getElementById('myTable').innerHTML = "<tr id='firstRow'> <th>Hole</th> </tr>";
     for (let i = 1; i <= 9; i++) {
         $("#firstRow").append("<td>" + i + "</td>")
@@ -14,9 +14,17 @@ function golfCard() {
     $("#myTable").append("<tr id='secondRow'> <th id='firstCourse'></th> </tr>")
 
     secondRow();
+
+    $("#myTable").append("<tr id='thirdRow'> <th id='secondCourse'></th> </tr>")
+
     thirdRow();
-    fourRow();
+
+    $("#myTable").append("<tr id='fourthRow'> <th id='thirdCourse'></th> </tr>")
+
+    fourthRow();
+
     fifthRow();
+
 
     $("#myTable").append("<tr id='sixthRow'> <th> <input class='names firstName' type='text' placeholder='1st Name'> </th> </tr>")
     sixthRow();
@@ -31,50 +39,143 @@ function golfCard() {
     ninthRow();
 
     tenthRow()
+
 }
+
+
+//example to add a looped number in an id
+// function secondRow() {
+
+//     for (let i = 1; i <= 9; i++) {
+//         $("#secondRow").append("<td id='firstCourseHole" + i + "' ></td>")
+//     }
+//     $("#secondRow").append("<td></td>")
+//     for (let i = 10; i <= 18; i++) {
+//         $("#secondRow").append("<td id='firstCourseHole" + i + "' ></td>")
+//     }
+//     $("#secondRow").append("<td></td> <td></td>")
+
+// }
+
+
+//Course 1 (fox follow) yards, color, and par. 
 
 function secondRow() {
+    $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
 
-    for (let i = 1; i <= 9; i++) {
-        $("#secondRow").append("<td id='firstCourseHole" + i + "' ></td>")
-    }
-    $("#secondRow").append("<td></td>")
-    for (let i = 10; i <= 18; i++) {
-        $("#secondRow").append("<td id='firstCourseHole" + i + "' ></td>")
-    }
-    $("#secondRow").append("<td></td> <td></td>")
+        // console.log(data);
 
+        for (let j = 0; j <= 8; j++) {
+    
+                let firstYards = data.data.holes[j].teeBoxes[0].yards;
+    
+                $("#secondRow").append("<td id='firstCourseHole'>"+ firstYards + "</td>");
+        }
+
+        $("#secondRow").append(" <td></td>")
+
+        for (let i = 9; i <= 17; i++) {
+    
+            let ContinuedFirstYards = data.data.holes[i].teeBoxes[0].yards;
+
+            $("#secondRow").append("<td id='firstCourseHole'>"+ ContinuedFirstYards + "</td>");            
+        }
+
+        $("#secondRow").append(" <td></td><td></td>")
+
+    });
 }
+
+// function thirdRow() {
+
+//     let third = document.createElement("tr")
+//     let thirdHeader = document.createElement("th")
+//     third.appendChild(thirdHeader);
+//     third.id = "thirdRow";
+//     thirdHeader.id="secondCourse";
+//     $("#myTable").append(third)
+    
+//     for (let i = 1; i <= 21; i++) {
+//         $("#thirdRow").append("<td></td>")
+//     }
+//     $("#myTable").append(third);
+// }
+
+
 
 function thirdRow() {
+    $.getJSON("https://golf-courses-api.herokuapp.com/courses/11819", function(data) {
 
-    let third = document.createElement("tr")
-    let thirdHeader = document.createElement("th")
-    third.appendChild(thirdHeader);
-    third.id = "thirdRow";
-    thirdHeader.id="secondCourse";
-    $("#myTable").append(third)
+        for (let j = 0; j <= 8; j++) {
     
-    for (let i = 1; i <= 21; i++) {
-        $("#thirdRow").append("<td></td>")
-    }
-    $("#myTable").append(third);
+                let secondYards = data.data.holes[j].teeBoxes[0].yards;
+    
+                $("#thirdRow").append("<td id='firstCourseHole'>"+ secondYards + "</td>");
+        }
+
+        $("#thirdRow").append(" <td></td>")
+
+        for (let i = 9; i <= 17; i++) {
+    
+            let continuedSecondYards = data.data.holes[i].teeBoxes[0].yards;
+
+            $("#thirdRow").append("<td id='secondCourseHole'>"+ continuedSecondYards + "</td>");            
+        }
+
+        $("#thirdRow").append(" <td></td><td></td>")
+
+    });
 }
 
-function fourRow() {
 
-    let fourth = document.createElement("tr")
-    let fourthHeader = document.createElement("th")
-    fourth.appendChild(fourthHeader);
-    fourth.id = "fourthRow";
-    fourthHeader.id="thirdCourse";
-    $("#myTable").append(fourth)
+
+
+// function fourRow() {
+
+//     let fourth = document.createElement("tr")
+//     let fourthHeader = document.createElement("th")
+//     fourth.appendChild(fourthHeader);
+//     fourth.id = "fourthRow";
+//     fourthHeader.id="thirdCourse";
+//     $("#myTable").append(fourth)
     
-    for (let i = 1; i <= 21; i++) {
-        $("#fourthRow").append("<td></td>")
-    }
-    $("#myTable").append(fourth);
+//     for (let i = 1; i <= 21; i++) {
+//         $("#fourthRow").append("<td></td>")
+//     }
+//     $("#myTable").append(fourth);
+// }
+
+
+
+
+function fourthRow() {
+    $.getJSON("https://golf-courses-api.herokuapp.com/courses/19002", function(data) {
+
+        for (let j = 0; j <= 8; j++) {
+    
+                let secondYards = data.data.holes[j].teeBoxes[0].yards;
+    
+                $("#fourthRow").append("<td id='firstCourseHole'>"+ secondYards + "</td>");
+        }
+
+        $("#fourthRow").append(" <td></td>")
+
+        for (let i = 9; i <= 17; i++) {
+    
+            let continuedSecondYards = data.data.holes[i].teeBoxes[0].yards;
+
+            $("#fourthRow").append("<td id='thirdCourseHole'>"+ continuedSecondYards + "</td>");            
+        }
+
+        $("#fourthRow").append(" <td></td><td></td>")
+
+    });
 }
+
+
+
+
+
 
 function fifthRow() {
 
@@ -158,7 +259,6 @@ function tenthRow() {
     $("#myTable").append(tenth);
 } 
 
-
 //Names of the Courses
 $.getJSON("https://golf-courses-api.herokuapp.com/courses", function(data) {
 
@@ -177,25 +277,4 @@ $.getJSON("https://golf-courses-api.herokuapp.com/courses", function(data) {
     document.getElementById('firstCourse').append(firstCourseName);
     document.getElementById('secondCourse').append(secondCourseName);
     document.getElementById('thirdCourse').append(thirdourseName);
-});
-
-//Course 1 (fox follow) yards, color, and par. 
-$.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
-
-    console.log(data);
-
-    let holeOne = data.data.holes[0].teeBoxes[0].yards;
-
-    document.getElementById('firstCourseHole1').append(holeOne);
-
-    let holeTwo = data.data.holes[1].teeBoxes[0].yards;
-
-    document.getElementById('firstCourseHole2').append(holeTwo);
-
-
-    //test code to loop yards
-    // for (let i = 0; i <= data.data.holes.length; i++) {
-        
-    // }
-
 });
