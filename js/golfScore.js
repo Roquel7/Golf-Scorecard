@@ -11,8 +11,10 @@ function createScorecard() {
 
 
     //This is the second row
-    $("#myTable").append("<tr id='secondRow'> <th id='firstCourse'></th> </tr>")
+    $("#myTable").append("<tr id='secondRow'> <th id='firstCourse' onclick='testing()'></th> </tr>")
     secondRow();
+
+ 
 
     $("#myTable").append("<tr id='thirdRow'> <th id='secondCourse'></th> </tr>")
     thirdRow();
@@ -35,6 +37,17 @@ function createScorecard() {
     ninthRow();
 
     tenthRow()
+
+
+    //trying to add a check to the course we click on: testing to see if I can change the color
+
+
+    //trying to see if my code registers value in the number cells to add them up
+      let erick = document.getElementById('cellNumber1');
+      console.log(erick)
+  
+
+
 }
 
 //example to add a looped number in an id
@@ -208,9 +221,12 @@ function fifthRow() {
 function sixthRow() {
 
     for (let i = 1; i <= 9; i++) {
-        $("#sixthRow").append("<td> <input class='numberCells' type='number' min='1' max='99'> </td>")
+        $("#sixthRow").append("<td> <input class='numberCells' type='number' min='1' max='99' id='cellNumber"+ i +" '> </td>")
     }
-    $("#sixthRow").append("<td></td> <td></td>")
+
+    $("#sixthRow").append("<td id='firstPlayerOut'></td> <td></td>")
+
+
     for (let i = 9; i <=17 ; i++) {
         $("#sixthRow").append("<td> <input class='numberCells' type='number' min='1' max='99'> </td>")
     }
@@ -317,3 +333,32 @@ $.getJSON("https://golf-courses-api.herokuapp.com/courses/19002", function(data)
     //SPANISH OAKS 19002
     console.log(data)
 });
+
+
+//tests
+// let main = document.createElement('div');
+// let checked = document.createElement('span');
+
+// checked.innerText = "Hello There"
+// main.appendChild(checked)
+// document.body.appendChild(main)
+
+
+// let tester = document.querySelector('.firstCourse');
+// console.log(tester)
+
+
+
+// function testing() {
+//     document.querySelector('.firstCourse').style.backgroundColor = "red";
+//   }
+
+// function testing() {
+//     $("#firstCourse").style.backgroundColor = "red";
+//   }
+
+// $("#firstCourse").append("<p></p>");
+
+// console.log(edit)
+
+//   edit.id = "race";

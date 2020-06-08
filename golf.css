@@ -1,19 +1,21 @@
+
 body {
     font-family: arial;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
+/* input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
-}
+} */
+
 
 h1 {
     text-align: center;
 }
 
 #firstRow, #tenthRow {
-    background-color: green;
+    background-color: #6c7ae0;
 }
 
 #firstRow td {
@@ -50,7 +52,7 @@ h1 {
 
 #table, td, th {
     padding: 20px;
-    border: 1px solid black;
+    border: 1px solid lightgray;
 }
 
 #table, th {
@@ -67,4 +69,12 @@ h1 {
 .numberCells {
     padding: 5px; 
     font-size: 15px;
+    width: inherit;
 }
+
+input[type=number] {
+    /* background-color: red; */
+    margin: -15px;
+    padding-left: 10px;
+}
+
