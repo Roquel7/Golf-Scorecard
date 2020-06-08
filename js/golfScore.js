@@ -221,10 +221,27 @@ function fifthRow() {
 function sixthRow() {
 
     for (let i = 1; i <= 9; i++) {
-        $("#sixthRow").append("<td> <input class='numberCells' type='number' min='1' max='99' id='cellNumber"+ i +" '> </td>")
+        $("#sixthRow").append("<td> <input class='numberCells' type='number' min='1' max='99' id='cellNumber"+ i +"' name='nCells'> </td>")
     }
 
-    $("#sixthRow").append("<td id='firstPlayerOut'></td> <td></td>")
+    $("#sixthRow").append("<td> <input type='number' id='firstPlayerOut' name='nTotal'></td> <td></td>")
+
+
+    //adding the numbers in that they input
+    $(document).ready(function(example) {
+        $("input").change(function() {
+
+            let adding  = 0;
+
+            $("input[name=nCells").each(function() {
+                adding = adding + parseInt($(this).val());
+            });
+
+            $("input[name=nTotal]").val(adding);
+        });
+
+    });
+
 
 
     for (let i = 9; i <=17 ; i++) {
