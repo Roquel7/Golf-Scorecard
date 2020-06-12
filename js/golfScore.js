@@ -30,42 +30,16 @@ function createScorecard() {
     $("#myTable").append("<tr id='seventhRow'> <th> <input class='names firstName' type='text' placeholder='2nd Name'> </th> </tr>")
     seventhRow();
 
-    $("#myTable").append("<tr id='eightRow'> <th> <input class='names firstName' type='text' placeholder='3rd Name'> </th> </tr>")
-    eightRow();
+    $("#myTable").append("<tr id='eighthRow'> <th> <input class='names firstName' type='text' placeholder='3rd Name'> </th> </tr>")
+    eighthRow();
 
     $("#myTable").append("<tr id='ninthRow'> <th> <input class='names firstName' type='text' placeholder='4th Name'> </th> </tr>")
     ninthRow();
 
     tenthRow()
-
-
-    //trying to add a check to the course we click on: testing to see if I can change the color
-
-
-    //trying to see if my code registers value in the number cells to add them up
-      let erick = document.getElementById('cellNumber1');
-      console.log(erick)
-  
-
-
 }
 
-//example to add a looped number in an id
-// function secondRow() {
 
-//     for (let i = 1; i <= 9; i++) {
-//         $("#secondRow").append("<td id='firstCourseHole" + i + "' ></td>")
-//     }
-//     $("#secondRow").append("<td></td>")
-//     for (let i = 10; i <= 18; i++) {
-//         $("#secondRow").append("<td id='firstCourseHole" + i + "' ></td>")
-//     }
-//     $("#secondRow").append("<td></td> <td></td>")
-
-// }
-
-
-//Course 1 (fox follow) yards, color, and par. 
 
 function secondRow() {
     $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
@@ -221,73 +195,157 @@ function fifthRow() {
 function sixthRow() {
 
     for (let i = 1; i <= 9; i++) {
-        $("#sixthRow").append("<td> <input class='numberCells' type='number' min='1' max='99' id='cellNumber"+ i +"' name='nCells'> </td>")
+        $("#sixthRow").append("<td class='sixthRowCell "+ i +"'> <input type='number' class='numberCells num firstSumOut' min='0' max='99'> </td>")
     }
 
-    $("#sixthRow").append("<td> <input type='number' id='firstPlayerOut' name='nTotal'></td> <td></td>")
+    //creates cell that adds the pars for OUT
+    $("#sixthRow").append("<td class='cellNumOut'> <output id='firstOut'> </td> <td></td>")
 
-
-    //adding the numbers in that they input
-    $(document).ready(function(example) {
-        $("input").change(function() {
-
-            let adding  = 0;
-
-            $("input[name=nCells").each(function() {
-                adding = adding + parseInt($(this).val());
-            });
-
-            $("input[name=nTotal]").val(adding);
+    $('.sixthRowCell').on('input', '.firstSumOut', function() {
+        let totalSum = 0;
+        $('.sixthRowCell .firstSumOut').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
         });
-
+        $('#firstOut').text(totalSum);
     });
 
-
-
-    for (let i = 9; i <=17 ; i++) {
-        $("#sixthRow").append("<td> <input class='numberCells' type='number' min='1' max='99'> </td>")
+    for (let i = 10; i <=18 ; i++) {
+        $("#sixthRow").append("<td class='sixthRowCell "+ i +"'> <input type='number' class='numberCells num firstSumIn' min='0' max='99'> </td>")
     }
-    $("#sixthRow").append("<td></td> <td></td>")
 
+    $("#sixthRow").append("<td class='cellNumIn'> <output id='firstIn'> </td> <td><output id='firstTotal'></td>")
+
+
+    $('.sixthRowCell').on('input', '.firstSumIn', function() {
+        let totalSum = 0;
+        $('.sixthRowCell .firstSumIn').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#firstIn').text(totalSum);
+    });
 }
 
 function seventhRow() {
 
     for (let i = 1; i <= 9; i++) {
-        $("#seventhRow").append("<td> <input class='numberCells' type='number' min='1' max='99'> </td>")
+        $("#seventhRow").append("<td class='seventhRowCell "+ i +"'> <input type='number' class='numberCells num secondSumOut' min='0' max='99'> </td>")
     }
-    $("#seventhRow").append("<td></td> <td></td>")
-    for (let i = 9; i <=17 ; i++) {
-        $("#seventhRow").append("<td> <input class='numberCells' type='number' min='1' max='99'> </td>")
-    }
-    $("#seventhRow").append("<td></td> <td></td>")
 
+    //creates cell that adds the pars for OUT
+    $("#seventhRow").append("<td class='cellNumOut'> <output id='secondOut'> </td> <td></td>")
+
+    $('.seventhRowCell').on('input', '.secondSumOut', function() {
+        let totalSum = 0;
+        $('.seventhRowCell .secondSumOut').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#secondOut').text(totalSum);
+    });
+
+    for (let i = 10; i <=18 ; i++) {
+        $("#seventhRow").append("<td class='seventhRowCell "+ i +"'> <input type='number' class='numberCells num secondSumIn' min='1' max='99'> </td>")
+    }
+
+    $("#seventhRow").append("<td class='cellNumIn'> <output id='secondIn'> </td> <td><output id='secondTotal'></td>")
+
+
+    $('.seventhRowCell').on('input', '.secondSumIn', function() {
+        let totalSum = 0;
+        $('.seventhRowCell .secondSumIn').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#secondIn').text(totalSum);
+    });
 }
 
-function eightRow() {
+function eighthRow() {
 
     for (let i = 1; i <= 9; i++) {
-        $("#eightRow").append("<td> <input class='numberCells' type='number' min='1' max='99'> </td>")
+        $("#eighthRow").append("<td class='eighthRowCell "+ i +"'> <input type='number' class='numberCells num thirdSumOut' min='0' max='99'> </td>")
     }
-    $("#eightRow").append("<td></td> <td></td>")
-    for (let i = 9; i <=17 ; i++) {
-        $("#eightRow").append("<td> <input class='numberCells' type='number' min='1' max='99'> </td>")
-    }
-    $("#eightRow").append("<td></td> <td></td>")
 
+    //creates cell that adds the pars for OUT
+    $("#eighthRow").append("<td class='cellNumOut'> <output id='thirdOut'> </td> <td></td>")
+
+    $('.eighthRowCell').on('input', '.thirdSumOut', function() {
+        let totalSum = 0;
+        $('.eighthRowCell .thirdSumOut').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#thirdOut').text(totalSum);
+    });
+
+    for (let i = 10; i <=18 ; i++) {
+        $("#eighthRow").append("<td class='eighthRowCell "+ i +"'> <input type='number' class='numberCells num thirdSumIn' min='1' max='99'> </td>")
+    }
+
+    $("#eighthRow").append("<td class='cellNumIn'> <output id='thirdIn'> </td> <td><output id='thirdTotal'></td>")
+
+
+    $('.eighthRowCell').on('input', '.thirdSumIn', function() {
+        let totalSum = 0;
+        $('.eighthRowCell .thirdSumIn').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#thirdIn').text(totalSum);
+    });
 }
 
 function ninthRow() {
 
     for (let i = 1; i <= 9; i++) {
-        $("#ninthRow").append("<td> <input class='numberCells' type='number' min='1' max='99'> </td>")
+        $("#ninthRow").append("<td class='ninthRowCell "+ i +"'> <input type='number' class='numberCells num fourthSumOut' min='0' max='99'> </td>")
     }
-    $("#ninthRow").append("<td></td> <td></td>")
-    for (let i = 9; i <=17 ; i++) {
-        $("#ninthRow").append("<td> <input class='numberCells' type='number' min='1' max='99'> </td>")
-    }
-    $("#ninthRow").append("<td></td> <td></td>")
 
+    //creates cell that adds the pars for OUT
+    $("#ninthRow").append("<td class='cellNumOut'> <output id='fourthOut'> </td> <td></td>")
+
+    $('.ninthRowCell').on('input', '.fourthSumOut', function() {
+        let totalSum = 0;
+        $('.ninthRowCell .fourthSumOut').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#fourthOut').text(totalSum);
+    });
+
+    for (let i = 10; i <=18 ; i++) {
+        $("#ninthRow").append("<td class='ninthRowCell "+ i +"'> <input type='number' class='numberCells num fourthSumIn' min='1' max='99'> </td>")
+    }
+
+    $("#ninthRow").append("<td class='cellNumIn'> <output id='fourthIn'> </td> <td><output id='fourthTotal'></td>")
+
+
+    $('.ninthRowCell').on('input', '.fourthSumIn', function() {
+        let totalSum = 0;
+        $('.ninthRowCell .fourthSumIn').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#fourthIn').text(totalSum);
+    });
 }
 
 function tenthRow() {
@@ -359,23 +417,3 @@ $.getJSON("https://golf-courses-api.herokuapp.com/courses/19002", function(data)
 // checked.innerText = "Hello There"
 // main.appendChild(checked)
 // document.body.appendChild(main)
-
-
-// let tester = document.querySelector('.firstCourse');
-// console.log(tester)
-
-
-
-// function testing() {
-//     document.querySelector('.firstCourse').style.backgroundColor = "red";
-//   }
-
-// function testing() {
-//     $("#firstCourse").style.backgroundColor = "red";
-//   }
-
-// $("#firstCourse").append("<p></p>");
-
-// console.log(edit)
-
-//   edit.id = "race";

@@ -69,12 +69,12 @@ h1 {
 .numberCells {
     padding: 5px; 
     font-size: 15px;
-    width: inherit;
 }
 
 input[type=number] {
     /* background-color: red; */
     margin: -15px;
     padding-left: 10px;
+
 }
 
