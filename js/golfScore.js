@@ -357,11 +357,51 @@ function tenthRow() {
     tenth.id = "tenthRow";
     $("#myTable").append(tenth)
     
-    for (let i = 1; i <= 22; i++) {
-        $("#tenthRow").append("<td></td>")
-    }
-    $("#myTable").append(tenth);
+    // for (let i = 1; i <= 22; i++) {
+    //     $("#tenthRow").append("<td></td>")
+    // }
+    // $("#myTable").append(tenth);
 } 
+
+
+//testing for having pars load when I click on the course name. 
+//I need to click twice for it to show color change on the course name. 
+function testing() {
+
+
+    $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
+        let list = document.getElementById('firstCourse');
+
+        list.addEventListener('click', function(ev) {
+            ev.target.classList.toggle('checked');
+    
+        })  
+
+        for (let j = 0; j <= 8; j++) {
+    
+            let firstYards = data.data.holes[j].teeBoxes[0].par;
+            console.log(firstYards)
+
+            $("#tenthRow").append("<td> "+ firstYards +" </td>")
+
+
+    }
+
+
+    })
+
+}
+
+
+
+    // console.log(list)
+//     list.addEventListener('click', function(ev) {
+//     //   if (ev.target.tagName === 'TH') {
+//         ev.target.classList.toggle('checked');
+//     //   }
+//     }, false);
+
+
 
 //Names of the Courses
 $.getJSON("https://golf-courses-api.herokuapp.com/courses", function(data) {

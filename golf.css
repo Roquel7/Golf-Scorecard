@@ -78,3 +78,9 @@ input[type=number] {
 
 }
 
+th.checked {
+    background-color: #6c7ae0;
+    font-weight: normal;
+
+}
+
