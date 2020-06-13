@@ -39,8 +39,6 @@ function createScorecard() {
     tenthRow()
 }
 
-
-
 function secondRow() {
     $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
 
@@ -199,7 +197,7 @@ function sixthRow() {
     }
 
     //creates cell that adds the pars for OUT
-    $("#sixthRow").append("<td class='cellNumOut'> <output id='firstOut'> </td> <td></td>")
+    $("#sixthRow").append("<td class='cellNumOut'> <output id='firstOut' > </td> <td></td>")
 
     $('.sixthRowCell').on('input', '.firstSumOut', function() {
         let totalSum = 0;
@@ -227,7 +225,19 @@ function sixthRow() {
                 totalSum += parseFloat(inputValue);
             }
         });
-        $('#firstIn').text(totalSum);
+        $('#firstIn').text(totalSum);          
+    });
+
+    //this add total par for the player in TOTAL
+    $('.sixthRowCell').on('input', '.num', function() {
+        let totalSum = 0;
+        $('.sixthRowCell .num').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#firstTotal').text(totalSum);          
     });
 }
 
@@ -268,6 +278,18 @@ function seventhRow() {
         });
         $('#secondIn').text(totalSum);
     });
+
+    $('.seventhRowCell').on('input', '.num', function() {
+        let totalSum = 0;
+        $('.seventhRowCell .num').each(function() {
+            let inputValue = $(this).val();
+            if($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#secondTotal').text(totalSum);          
+    });
+
 }
 
 function eighthRow() {
@@ -307,6 +329,18 @@ function eighthRow() {
         });
         $('#thirdIn').text(totalSum);
     });
+
+    $('.eighthRowCell').on('input', '.num', function() {
+        let totalSum = 0;
+        $('.eighthRowCell .num').each(function() {
+            let inputValue = $(this).val();
+            if ($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#thirdTotal').text(totalSum);
+    });
+
 }
 
 function ninthRow() {
@@ -335,7 +369,6 @@ function ninthRow() {
 
     $("#ninthRow").append("<td class='cellNumIn'> <output id='fourthIn'> </td> <td><output id='fourthTotal'></td>")
 
-
     $('.ninthRowCell').on('input', '.fourthSumIn', function() {
         let totalSum = 0;
         $('.ninthRowCell .fourthSumIn').each(function() {
@@ -345,6 +378,17 @@ function ninthRow() {
             }
         });
         $('#fourthIn').text(totalSum);
+    });
+
+    $('.ninthRowCell').on('input', '.num', function() {
+        let totalSum = 0;
+        $('.ninthRowCell .num').each(function() {
+            let inputValue = $(this).val();
+            if ($.isNumeric(inputValue)) {
+                totalSum += parseFloat(inputValue);
+            }
+        });
+        $('#fourthTotal').text(totalSum);
     });
 }
 
@@ -358,13 +402,11 @@ function tenthRow() {
     $("#myTable").append(tenth)
     
     // for (let i = 1; i <= 22; i++) {
-    //     $("#tenthRow").append("<td></td>")
+    //     $("#tenthRow").append("<td class='pars'></td>")
     // }
     // $("#myTable").append(tenth);
 
     $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
-
-
 
         for (let j = 0; j <= 8; j++) {
     
@@ -376,79 +418,86 @@ function tenthRow() {
             list.addEventListener('click', function(ev) {
                 if (ev.target.tagName === 'TH') {
                     ev.target.classList.toggle('checked');
-                    $("#tenthRow").append("<td> "+ firstYards +" </td>")
+                    $("#tenthRow").append("<td id='pars'> "+ firstYards +" </td>");
+                }
+            }, false);  
+        }
+    });
+
+    $.getJSON("https://golf-courses-api.herokuapp.com/courses/11819", function(data) {
+
+        for (let j = 0; j <= 8; j++) {
+    
+            let firstYards = data.data.holes[j].teeBoxes[0].par;
+
+
+            let list = document.getElementById('secondCourse');
+
+            list.addEventListener('click', function(ev) {
+                if (ev.target.tagName === 'TH') {
+                    ev.target.classList.toggle('checked');
+                    // $("#tenthRow").append("<td> "+ firstYards +" </td>")
+                }
+            }, false);  
+        }
+    });
+
+
+    $.getJSON("https://golf-courses-api.herokuapp.com/courses/19002", function(data) {
+
+        for (let j = 0; j <= 8; j++) {
+    
+            let parNum = data.data.holes[j].teeBoxes[0].par;
+
+
+            let list = document.getElementById('thirdCourse');
+
+            list.addEventListener('click', function(ev) {
+                if (ev.target.tagName === 'TH') {
+                    ev.target.classList.toggle('checked');
+                    $("#tenthRow").append("<td class='pars'> "+ parNum +" </td>")
                 }
 
-
             }, false);  
-
         }
-
-
-
-
     });
+
+
 } 
 
-
-//testing for having pars load when I click on the course name. 
-//I need to click twice for it to show color change on the course name. 
 function testing() {
 
+    //THANKSGIVING POINT 11819
+    // $.getJSON("https://golf-courses-api.herokuapp.com/courses/11819", function(data) {});
 
+    //SPANISH OAKS 19002
+    // $.getJSON("https://golf-courses-api.herokuapp.com/courses/19002", function(data) {});
+
+
+
+    //FOX HOLLOW 18300
     // $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
-    //     let list = document.getElementById('firstCourse');
-
-    //     list.addEventListener('click', function(ev) {
-    //         ev.target.classList.toggle('checked');
-    
-    //     })  
-
-    //     for (let j = 0; j <= 8; j++) {
-    
-    //         let firstYards = data.data.holes[j].teeBoxes[0].par;
-    //         console.log(firstYards)
-
-    //         $("#tenthRow").append("<td> "+ firstYards +" </td>")
-
-
-    //     }
-
 
     // });
 
+
+
+
 }
 
-
-
-    // console.log(list)
-//     list.addEventListener('click', function(ev) {
-//     //   if (ev.target.tagName === 'TH') {
-//         ev.target.classList.toggle('checked');
-//     //   }
-//     }, false);
-
-
-
-//Names of the Courses
 $.getJSON("https://golf-courses-api.herokuapp.com/courses", function(data) {
 
     // example to get an API
     // let courseOne = "https://golf-courses-api.herokuapp.com/courses/" + data.courses[0].id;
     // console.log(courseOne);
 
-
     let firstCourseName = data.courses[0].name;
-
     let secondCourseName = data.courses[1].name;
-
     let thirdCourseName = data.courses[2].name;
-
 
     document.getElementById('firstCourse').append(firstCourseName);
     document.getElementById('secondCourse').append(secondCourseName);
     document.getElementById('thirdCourse').append(thirdCourseName);
-
 });
 
 
@@ -456,10 +505,6 @@ $.getJSON("https://golf-courses-api.herokuapp.com/courses", function(data) {
 $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
 
     //FOX HOLLOW 18300
-
-    // example to get an API
-    // let courseOne = "https://golf-courses-api.herokuapp.com/courses/18300";
-    // console.log(courseOne);
     console.log(data)
 
 });
@@ -475,12 +520,3 @@ $.getJSON("https://golf-courses-api.herokuapp.com/courses/19002", function(data)
     //SPANISH OAKS 19002
     console.log(data)
 });
-
-
-//tests
-// let main = document.createElement('div');
-// let checked = document.createElement('span');
-
-// checked.innerText = "Hello There"
-// main.appendChild(checked)
-// document.body.appendChild(main)
