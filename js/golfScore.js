@@ -11,7 +11,7 @@ function createScorecard() {
 
 
     //This is the second row
-    $("#myTable").append("<tr id='secondRow'> <th id='firstCourse' onclick='testing()'></th> </tr>")
+    $("#myTable").append("<tr id='secondRow'> <th id='firstCourse' ></th> </tr>")
     secondRow();
 
  
@@ -361,6 +361,33 @@ function tenthRow() {
     //     $("#tenthRow").append("<td></td>")
     // }
     // $("#myTable").append(tenth);
+
+    $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
+
+
+
+        for (let j = 0; j <= 8; j++) {
+    
+            let firstYards = data.data.holes[j].teeBoxes[0].par;
+
+
+            let list = document.getElementById('firstCourse');
+
+            list.addEventListener('click', function(ev) {
+                if (ev.target.tagName === 'TH') {
+                    ev.target.classList.toggle('checked');
+                    $("#tenthRow").append("<td> "+ firstYards +" </td>")
+                }
+
+
+            }, false);  
+
+        }
+
+
+
+
+    });
 } 
 
 
@@ -369,26 +396,26 @@ function tenthRow() {
 function testing() {
 
 
-    $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
-        let list = document.getElementById('firstCourse');
+    // $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
+    //     let list = document.getElementById('firstCourse');
 
-        list.addEventListener('click', function(ev) {
-            ev.target.classList.toggle('checked');
+    //     list.addEventListener('click', function(ev) {
+    //         ev.target.classList.toggle('checked');
     
-        })  
+    //     })  
 
-        for (let j = 0; j <= 8; j++) {
+    //     for (let j = 0; j <= 8; j++) {
     
-            let firstYards = data.data.holes[j].teeBoxes[0].par;
-            console.log(firstYards)
+    //         let firstYards = data.data.holes[j].teeBoxes[0].par;
+    //         console.log(firstYards)
 
-            $("#tenthRow").append("<td> "+ firstYards +" </td>")
-
-
-    }
+    //         $("#tenthRow").append("<td> "+ firstYards +" </td>")
 
 
-    })
+    //     }
+
+
+    // });
 
 }
 
