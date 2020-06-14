@@ -171,37 +171,39 @@ function fourthRow() {
         // console.log(holesThree.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].par}, 0))
         // console.log(holesThree.filter(val => val.hole < 10).map(hole => hole.teeBoxes[0].par))
         for (let j = 0; j <= 8; j++) {
+
+            //spanish oaks does not have a pro yardage and info
     
-            let secondYards = data.data.holes[j].teeBoxes[0].yards;
+            // let secondYards = data.data.holes[j].teeBoxes[0].yards;
     
-            $("#fourthRow").append("<td id='firstCourseHole'>"+ secondYards + "</td>");
+            $("#fourthRow").append("<td id='firstCourseHole'></td>");
         }
 
         $("#fourthRow").append(" <td id ='thirdCourseOut'></td>")
 
         //adding up the yards in OUT
-        let yardOut = (holesThree.filter(val => val.hole <= 9).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
-        document.getElementById('thirdCourseOut').append(yardOut);
+        // let yardOut = (holesThree.filter(val => val.hole <= 9).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
+        // document.getElementById('thirdCourseOut').append(yardOut);
 
         for (let i = 9; i <= 17; i++) {
     
-            let continuedSecondYards = data.data.holes[i].teeBoxes[0].yards;
+            // let continuedSecondYards = data.data.holes[i].teeBoxes[0].yards;
 
-            $("#fourthRow").append("<td id='thirdCourseHole'>"+ continuedSecondYards + "</td>");            
+            $("#fourthRow").append("<td id='thirdCourseHole'></td>");            
         }
 
         //adding up the yards in IN
         $("#fourthRow").append("<td id='thirdCourseIn'></td>");
 
-        let YardsIn = (holesThree.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
-        document.getElementById('thirdCourseIn').append(YardsIn);
+        // let YardsIn = (holesThree.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
+        // document.getElementById('thirdCourseIn').append(YardsIn);
 
 
         //adding for total yards
         $("#fourthRow").append(" <td id ='thirdCourseTotdal'></td>")
 
-        let yardTotal = (holesThree.filter(val => val.hole <= 18).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
-        document.getElementById('thirdCourseTotdal').append(yardTotal);
+        // let yardTotal = (holesThree.filter(val => val.hole <= 18).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
+        // document.getElementById('thirdCourseTotdal').append(yardTotal);
 
     });
 }

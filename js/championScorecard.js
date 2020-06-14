@@ -50,46 +50,46 @@ function secondRow() {
 
         // pars for this course
         let holesOne = data.data.holes;    
-        let oneParOut = holesOne.filter(val => val.hole < 10).map(hole => hole.teeBoxes[0].par);
-        let oneParIn = holesOne.filter(val => val.hole <= 18).map(hole => hole.teeBoxes[0].par);
-        let parTotalOut = holesOne.filter(val => val.hole <= 9).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].par}, 0);
-        let parTotalIn = holesOne.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].par}, 0);
-        let parTotal = holesOne.filter(val => val.hole <= 18).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].par}, 0);
-
-
+        let oneParOut = holesOne.filter(val => val.hole < 10).map(hole => hole.teeBoxes[1].par);
+        let oneParIn = holesOne.filter(val => val.hole <= 18).map(hole => hole.teeBoxes[1].par);
+        let parTotalOut = holesOne.filter(val => val.hole <= 9).reduce(function(acc, hole) {return acc + hole.teeBoxes[1].par}, 0);
+        let parTotalIn = holesOne.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[1].par}, 0);
+        let parTotal = holesOne.filter(val => val.hole <= 18).reduce(function(acc, hole) {return acc + hole.teeBoxes[1].par}, 0);
+  
+    
         for (let j = 0; j <= 8; j++) {
     
-                let firstYards = data.data.holes[j].teeBoxes[0].yards;
+                let firstYards = data.data.holes[j].teeBoxes[1].yards;
     
                 $("#secondRow").append("<td id='firstCourseHole'>"+ firstYards + "</td>");
-
         }
-        
+
         //setting up the par cells
         for (let r = 0; r < oneParOut.length; r++) {
             $("#tenthRow").append("<td class='pars'> "+oneParOut[r]+"</td>")
-            
+                    
         }
-
+        
         $("#tenthRow").append("<td>"+parTotalOut+"</td><td></td>");
-
-
+        
+        
         for (let r = 9; r < oneParIn.length; r++) {
             $("#tenthRow").append("<td class='pars'> "+oneParIn[r]+" ")
-            
+                    
         }
-
+        
         $("#tenthRow").append("<td>"+parTotalIn+"</td><td>"+parTotal+"</td>");
+        
 
         //adding up yards in OUT
         $("#secondRow").append("<td id ='firstCourseOut'></td>")
 
-        let yardTotalOut = (holesOne.filter(val => val.hole <= 9).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
+        let yardTotalOut = (holesOne.filter(val => val.hole <= 9).reduce(function(acc, hole) {return acc + hole.teeBoxes[1].yards}, 0))
         document.getElementById('firstCourseOut').append(yardTotalOut);
 
         for (let i = 9; i <= 17; i++) {
     
-            let ContinuedFirstYards = data.data.holes[i].teeBoxes[0].yards;
+            let ContinuedFirstYards = data.data.holes[i].teeBoxes[1].yards;
 
             $("#secondRow").append("<td id='firstCourseHole'>"+ ContinuedFirstYards + "</td>");            
         }
@@ -97,14 +97,14 @@ function secondRow() {
         //adding up the yards in IN
         $("#secondRow").append(" <td id ='firstCourseIn'></td>")
 
-        let yardTotalIn = (holesOne.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
+        let yardTotalIn = (holesOne.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[1].yards}, 0))
         document.getElementById('firstCourseIn').append(yardTotalIn);
 
 
         //adding for total yards
         $("#secondRow").append(" <td id ='firstCourseTotal'></td>")
 
-        let yardTotalTotal = (holesOne.filter(val => val.hole <= 18).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
+        let yardTotalTotal = (holesOne.filter(val => val.hole <= 18).reduce(function(acc, hole) {return acc + hole.teeBoxes[1].yards}, 0))
         document.getElementById('firstCourseTotal').append(yardTotalTotal);
 
     });
@@ -121,23 +121,24 @@ function thirdRow() {
 
         // pars for this course
         let holesTwo = data.data.holes;
-        // console.log(holesTwo.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].par}, 0))
-        // console.log(holesTwo.filter(val => val.hole < 10).map(hole => hole.teeBoxes[0].par))
+
         for (let j = 0; j <= 8; j++) {
     
-            let secondYards = data.data.holes[j].teeBoxes[0].yards;
+            let secondYards = data.data.holes[j].teeBoxes[1].yards;
 
             $("#thirdRow").append("<td id='secondCourseHole'>"+ secondYards + "</td>");
         }
+
+
         //adding up the yards in OUT
         $("#thirdRow").append("<td id ='secondCourseOut'></td>");
 
-        let yardOut = (holesTwo.filter(val => val.hole <= 9).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
+        let yardOut = (holesTwo.filter(val => val.hole <= 9).reduce(function(acc, hole) {return acc + hole.teeBoxes[1].yards}, 0))
         document.getElementById('secondCourseOut').append(yardOut);
 
         for (let i = 9; i <= 17; i++) {
     
-            let continuedSecondYards = data.data.holes[i].teeBoxes[0].yards;
+            let continuedSecondYards = data.data.holes[i].teeBoxes[1].yards;
 
             $("#thirdRow").append("<td id='secondCourseHole'>"+ continuedSecondYards + "</td>");            
         }
@@ -145,14 +146,14 @@ function thirdRow() {
         //adding up the yards in IN
         $("#thirdRow").append("<td id='secondCourseIn'></td>");
 
-        let YardsIn = (holesTwo.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
+        let YardsIn = (holesTwo.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[1].yards}, 0))
         document.getElementById('secondCourseIn').append(YardsIn);
 
 
         //adding for total yards
         $("#thirdRow").append(" <td id ='secondCourseTotal'></td>")
 
-        let yardTotal = (holesTwo.filter(val => val.hole <= 18).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].yards}, 0))
+        let yardTotal = (holesTwo.filter(val => val.hole <= 18).reduce(function(acc, hole) {return acc + hole.teeBoxes[1].yards}, 0))
         document.getElementById('secondCourseTotal').append(yardTotal);
     });
 }
@@ -168,8 +169,7 @@ function fourthRow() {
 
         // pars for this course
         let holesThree = data.data.holes;
-        // console.log(holesThree.filter(val => val.hole >= 10).reduce(function(acc, hole) {return acc + hole.teeBoxes[0].par}, 0))
-        // console.log(holesThree.filter(val => val.hole < 10).map(hole => hole.teeBoxes[0].par))
+    
         for (let j = 0; j <= 8; j++) {
     
             let secondYards = data.data.holes[j].teeBoxes[0].yards;
@@ -510,20 +510,27 @@ function ninthRow() {
     })
 }
 
+//Names of the Courses
 $.getJSON("https://golf-courses-api.herokuapp.com/courses", function(data) {
 
     // example to get an API
     // let courseOne = "https://golf-courses-api.herokuapp.com/courses/" + data.courses[0].id;
     // console.log(courseOne);
 
+
     let firstCourseName = data.courses[0].name;
+
     let secondCourseName = data.courses[1].name;
+
     let thirdCourseName = data.courses[2].name;
+
 
     document.getElementById('firstCourse').append(firstCourseName);
     document.getElementById('secondCourse').append(secondCourseName);
     document.getElementById('thirdCourse').append(thirdCourseName);
+
 });
+
 
 //Course details
 $.getJSON("https://golf-courses-api.herokuapp.com/courses/18300", function(data) {
