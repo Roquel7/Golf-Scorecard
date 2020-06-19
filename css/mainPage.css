@@ -1,6 +1,6 @@
 body {
     font-family: arial;
-    background-image: url("/images/golf-course.jpg");
+    background-image: url("../images/golf-course.jpg");
     background-position: center;
     background-size: cover;
 }
